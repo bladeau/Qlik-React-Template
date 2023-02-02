@@ -11,8 +11,7 @@ async function getQCSHeaders({ webIntegrationId, url }) {
     const loginUrl = new URL(`https://${url}/login`);
     loginUrl.searchParams.append("returnto", window.location.href);
     loginUrl.searchParams.append("qlik-web-integration-id", webIntegrationId);
-    console.log(loginUrl);
-    // window.location.href = loginUrl;
+    window.location.href = loginUrl;
     return undefined;
   }
   const csrfToken = new Map(response.headers).get("qlik-csrf-token");
