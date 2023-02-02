@@ -7,9 +7,9 @@ export const QDocContext = React.createContext();
 
 const nebulaPromise = async () => {
   const app = await connect({
-    webIntegrationId: "vK7J44nRiKAbEvuKfhP9LIq",
+    webIntegrationId: "vK7J44nRiKAbEvuKfhP9LIq-mOE7nZVr",
     url: "alalmaktoum.ap.qlikcloud.com",
-    appId: "",
+    appId: "bf6b6f93-c574-4f68-aaed-2cee21794d30",
   });
   return embed(app);
 };
@@ -17,6 +17,7 @@ export const QDocProvider = ({ children }) => {
   const [nebula, setNebula] = useState(null);
 
   const init = async () => {
+    console.log("init nebula");
     const _nebula = await nebulaPromise();
     setNebula(_nebula);
   };
@@ -37,7 +38,7 @@ export const QDocProvider = ({ children }) => {
 };
 
 QDocProvider.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object.isRequired,
 };
 QDocProvider.defaultProps = [];
 

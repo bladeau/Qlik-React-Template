@@ -6,11 +6,13 @@ async function getQCSHeaders({ webIntegrationId, url }) {
     credentials: "include",
     headers: { "qlik-web-integration-id": webIntegrationId },
   });
+
   if (response.status === 401) {
     const loginUrl = new URL(`https://${url}/login`);
     loginUrl.searchParams.append("returnto", window.location.href);
     loginUrl.searchParams.append("qlik-web-integration-id", webIntegrationId);
-    window.location.href = loginUrl;
+    console.log(loginUrl);
+    // window.location.href = loginUrl;
     return undefined;
   }
   const csrfToken = new Map(response.headers).get("qlik-csrf-token");
@@ -37,7 +39,8 @@ async function getEnigmaApp({ host, appId, headers }) {
 
 async function connect({ url, webIntegrationId, appId }) {
   const host = url.replace(/^https?:\/\//, "").replace(/\/?/, "");
-  const headers = await getQCSHeaders({ url, webIntegrationId });
+
+  const headers = await getQCSHeaders({ webIntegrationId, url });
   return getEnigmaApp({ host, headers, appId });
 }
 
