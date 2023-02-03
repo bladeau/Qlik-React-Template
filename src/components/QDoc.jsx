@@ -6,18 +6,19 @@ import connect from "./connect";
 export const QDocContext = React.createContext();
 
 const nebulaPromise = async () => {
+  //Establish the Qlik Sense engine session connection. IApp
   const app = await connect({
     webIntegrationId: "vK7J44nRiKAbEvuKfhP9LIq-mOE7nZVr",
     url: "alalmaktoum.ap.qlikcloud.com",
     appId: "bf6b6f93-c574-4f68-aaed-2cee21794d30",
   });
-  return embed(app);
+
+  return embed(app); //Initiates a new Embed instance using the specified enigma app.
 };
 export const QDocProvider = ({ children }) => {
   const [nebula, setNebula] = useState(null);
 
   const init = async () => {
-    console.log("init nebula");
     const _nebula = await nebulaPromise();
     setNebula(_nebula);
   };

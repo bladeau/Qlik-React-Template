@@ -32,7 +32,6 @@ async function getEnigmaApp({ host, appId, headers }) {
       url: `wss://${host}/app/${appId}?${params}`,
     })
     .open();
-
   return enigmaGlobal.openDoc(appId);
 }
 
