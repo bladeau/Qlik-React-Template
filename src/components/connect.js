@@ -1,5 +1,5 @@
 import enigma from "enigma.js";
-import schema from "enigma.js/schemas/12.170.2.json";
+import schema from "enigma.js/schemas/12.936.0.json";
 
 async function getQCSHeaders({ webIntegrationId, url }) {
   const response = await fetch(`https://${url}/api/v1/csrf-token`, {
@@ -32,6 +32,10 @@ async function getEnigmaApp({ host, appId, headers }) {
       url: `wss://${host}/app/${appId}?${params}`,
     })
     .open();
+
+  // open the app, and fetch the layout:
+  // const app = await enigmaGlobal.openDoc(appId);
+  // const appLayout = await app.getAppLayout();
 
   return enigmaGlobal.openDoc(appId);
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { QDocContext } from "./QDoc";
+import { QDocContext } from "./QDocProvider";
 
 const SomeConsumer = () => {
   const chartElement = React.useRef();
@@ -9,7 +9,7 @@ const SomeConsumer = () => {
   if (nebula) {
     nebula.render({
       element: chartElement.current,
-      id: "yUGVAa",
+      id: "nnGZJp",
     });
   }
   return (

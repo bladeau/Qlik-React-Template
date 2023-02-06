@@ -16,15 +16,12 @@ const nebulaPromise = async () => {
 
   // //Enigma App is a QIX instance //Enigma App is a QIX instance//
   // const allInfos = await app.getAllInfos();
-  // console.log(allInfos);
-
   // const getLayout = await app.getObject({ NCtK: allInfos[0].qId }).then((item) => {
   //   return item.getLayout();
   // });
-  // console.log(typeof getLayout);
   //Enigma App is a QIX instance //Enigma App is a QIX instance
 
-  return baseConfig(app); //Initiates a new Embed instance with base configuration.
+  return baseConfig(app); //Initiates a new Embed instance with base configuration and preloaded types.
 };
 export const QDocProvider = ({ children }) => {
   const [nebula, setNebula] = useState(null);

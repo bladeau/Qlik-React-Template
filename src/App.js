@@ -1,4 +1,4 @@
-import { QDocProvider } from "./components/QDoc";
+import { QDocProvider } from "./components/QDocProvider";
 import SomeConsumer from "./components/SomeConsumer";
 import "./App.css";
 const App = () => (

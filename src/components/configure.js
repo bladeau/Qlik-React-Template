@@ -1,11 +1,12 @@
 // https://qlik.dev/libraries-and-tools/nebulajs/configuration
 // https://qlik.dev/libraries-and-tools/nebulajs/supported-charts
+//https://www.npmjs.com/package/@motor-js/nebula?activeTab=dependencies
 import { embed } from "@nebula.js/stardust";
 import barChart from "@nebula.js/sn-bar-chart";
 import lineChart from "@nebula.js/sn-line-chart";
 import pieChart from "@nebula.js/sn-pie-chart";
 import sankeyChart from "@nebula.js/sn-sankey-chart";
-import funneChart from "@nebula.js/sn-funnel-chart";
+import funnel from "@nebula.js/sn-funnel-chart";
 import mekkoChart from "@nebula.js/sn-mekko-chart";
 
 const baseConfig = embed.createConfiguration({
@@ -20,28 +21,28 @@ const baseConfig = embed.createConfiguration({
   },
   types: [
     {
-      name: "barChart",
-      load: () => barChart,
+      name: "barchart",
+      load: () => Promise.resolve(barChart),
     },
     {
-      name: "lineChart",
-      load: () => lineChart,
+      name: "linechart",
+      load: () => Promise.resolve(lineChart),
     },
     {
-      name: "pieChart",
-      load: () => pieChart,
+      name: "piechart",
+      load: () => Promise.resolve(pieChart),
     },
     {
-      name: "sankeyChart",
-      load: () => sankeyChart,
+      name: "qlik-sankey-chart-ext",
+      load: () => Promise.resolve(sankeyChart),
     },
     {
-      name: "funneChart",
-      load: () => funneChart,
+      name: "qlik-funnel-chart",
+      load: () => Promise.resolve(funnel),
     },
     {
-      name: "mekkoChart",
-      load: () => mekkoChart,
+      name: "mekkochart",
+      load: () => Promise.resolve(mekkoChart),
     },
   ],
 });
