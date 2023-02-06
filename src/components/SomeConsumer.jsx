@@ -1,20 +1,27 @@
 import React, { useContext, useEffect } from "react";
 import { QDocContext } from "./QDocProvider";
+import baseConfig from "./configureChartsNebula";
 
 const styles = {
+  filter: { width: "100%" },
   chart: { position: "relative", display: "inline-block", height: "600px", width: "calc(50% - 8px)" },
 };
 
 const SomeConsumer = () => {
-  const nebula = useContext(QDocContext);
+  const enigma = useContext(QDocContext);
   //Setup DOM References
-  const chart1 = React.useRef();
-  const chart2 = React.useRef();
+  const selectionElement = React.useRef(null);
+  const chart1 = React.useRef(null);
+  const chart2 = React.useRef(null);
 
   const initCharts = async () => {
+    console.log(enigma);
+    const nebula = await baseConfig(enigma);
     //Retrieve Embed instance from Context... https://qlik.dev/apis/javascript/nebulajs-stardust/#%23%2Fdefinitions%2FEmbed
-    // Seems to execute before the Context Provider is done... Need to Check if ready
     if (nebula) {
+      const selections = await nebula.selections();
+      selections.mount(selectionElement.current);
+
       await nebula.render({
         element: chart1.current,
         id: "yUGVAa",
@@ -26,13 +33,17 @@ const SomeConsumer = () => {
       });
     }
   };
+
   useEffect(() => {
-    initCharts();
-  });
+    console.log("use Effect runs");
+
+    if ((selectionElement, chart1 && chart2)) initCharts();
+  }, [selectionElement, chart1, chart2]);
 
   return (
     <>
       ChildTop
+      <div ref={selectionElement} style={styles.filter} />
       <div ref={chart1} style={styles.chart} />
       Some Text
       <div ref={chart2} style={styles.chart} />
