@@ -16,9 +16,7 @@ const nebulaPromise = async () => {
 
   // //Enigma App is a QIX instance //Enigma App is a QIX instance//
   // const allInfos = await app.getAllInfos();
-  // const getLayout = await app.getObject({ NCtK: allInfos[0].qId }).then((item) => {
-  //   return item.getLayout();
-  // });
+
   //Enigma App is a QIX instance //Enigma App is a QIX instance
 
   return baseConfig(app); //Initiates a new Embed instance with base configuration and preloaded types.
@@ -28,7 +26,7 @@ export const QDocProvider = ({ children }) => {
 
   const init = async () => {
     const _nebula = await nebulaPromise();
-
+    // createsession object - get layout - see onenote Layout
     setNebula(_nebula);
   };
 
@@ -39,7 +37,7 @@ export const QDocProvider = ({ children }) => {
   return (
     <>
       {!QDocContext && <div>Connecting to Qlik...</div>}
-      {QDocContext && <QDocContext.Provider value={nebula}>{children}</QDocContext.Provider>}
+      {QDocContext && <QDocContext.Provider value={nebula}>ContextTop{children}ContextBottom</QDocContext.Provider>}
     </>
   );
 };

@@ -4,7 +4,7 @@
 import { embed } from "@nebula.js/stardust";
 import barChart from "@nebula.js/sn-bar-chart";
 import lineChart from "@nebula.js/sn-line-chart";
-import pieChart from "@nebula.js/sn-pie-chart";
+import piechart from "@nebula.js/sn-pie-chart";
 import sankeyChart from "@nebula.js/sn-sankey-chart";
 import funnel from "@nebula.js/sn-funnel-chart";
 import mekkoChart from "@nebula.js/sn-mekko-chart";
@@ -30,7 +30,7 @@ const baseConfig = embed.createConfiguration({
     },
     {
       name: "piechart",
-      load: () => Promise.resolve(pieChart),
+      load: () => Promise.resolve(piechart),
     },
     {
       name: "qlik-sankey-chart-ext",
