@@ -1,4 +1,5 @@
-// https://qlik.dev/tutorials/build-a-simple-mashup-using-nebulajs
+// https://qlik.dev/libraries-and-tools/nebulajs/configuration
+// https://qlik.dev/libraries-and-tools/nebulajs/supported-charts
 import { embed } from "@nebula.js/stardust";
 import barChart from "@nebula.js/sn-bar-chart";
 import lineChart from "@nebula.js/sn-line-chart";
@@ -7,7 +8,7 @@ import sankeyChart from "@nebula.js/sn-sankey-chart";
 import funneChart from "@nebula.js/sn-funnel-chart";
 import mekkoChart from "@nebula.js/sn-mekko-chart";
 
-const configure = embed.createConfiguration({
+const baseConfig = embed.createConfiguration({
   context: {
     theme: "light",
     language: "en-US",
@@ -45,4 +46,4 @@ const configure = embed.createConfiguration({
   ],
 });
 
-export default configure;
+export default baseConfig;
