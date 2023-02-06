@@ -7,7 +7,7 @@ const styles = {
   chart: { position: "relative", display: "inline-block", height: "600px", width: "calc(50% - 8px)" },
 };
 
-const SomeConsumer = () => {
+const ObjectsPage = () => {
   const enigma = useContext(QDocContext);
   //Setup DOM References
   const selectionElement = React.useRef(null);
@@ -17,7 +17,7 @@ const SomeConsumer = () => {
   const initCharts = async () => {
     console.log(enigma);
     const nebula = await baseConfig(enigma);
-    //Retrieve Embed instance from Context... https://qlik.dev/apis/javascript/nebulajs-stardust/#%23%2Fdefinitions%2FEmbed
+    //Retrieve Enigma Context and Nebula/Embed... https://qlik.dev/apis/javascript/nebulajs-stardust/#%23%2Fdefinitions%2FEmbed
     if (nebula) {
       const selections = await nebula.selections();
       selections.mount(selectionElement.current);
@@ -52,4 +52,4 @@ const SomeConsumer = () => {
   );
 };
 
-export default SomeConsumer;
+export default ObjectsPage;
