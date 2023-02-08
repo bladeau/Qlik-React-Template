@@ -3,12 +3,14 @@ import { QDocContext } from "./QDocProvider";
 
 const TablePage = () => {
   const enigma = useContext(QDocContext);
+  const [tableHeaders, settableHeaders] = useState(null);
   const [tableData, settableData] = useState(null);
   //Setup DOM References
 
   const initEnigmaAppObject = async () => {
     //https://qlik.dev/libraries-and-tools/enigmajs
 
+    // Get Table and Data
     const model = await enigma.getObject("WTZDvr"); // It's a table
     const modelLayout = await model.getLayout();
     const data = [];
@@ -32,6 +34,22 @@ const TablePage = () => {
 
     settableData(data);
 
+    // Get Table Headers
+    const dimensionInfo = modelLayout.qHyperCube.qDimensionInfo.map((item) => {
+      return {
+        title: item.qFallbackTitle,
+      };
+    });
+    const measureInfo = modelLayout.qHyperCube.qMeasureInfo.map((item) => {
+      return {
+        title: item.qFallbackTitle,
+      };
+    });
+
+    settableHeaders(dimensionInfo.concat(measureInfo));
+
+    // Notes:
+    // https://observablehq.com/@yianni-ververis/enigma-js-getobject-with-all-data
     // enigma.getObject("WTZDvr").then((api) => {
     //   // api is now an object with QIX interface methods for the GenericObject struct
     //   api.getLayout().then(() => {
@@ -49,6 +67,7 @@ const TablePage = () => {
     //     });
     //   });
     // });
+    //End Notes
   };
 
   useEffect(() => {
@@ -58,17 +77,32 @@ const TablePage = () => {
   return (
     <>
       <table>
-        {tableData
-          ? tableData.map((x) => {
+        <thead>
+          <tr>
+            {tableHeaders &&
+              tableHeaders.map((column) => {
+                return <th key={`column-${column.title}`}>{column.title}</th>;
+              })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {tableData ? (
+            tableData.map((x, index) => {
               return (
-                <tr>
-                  <td>{x[0].qText}</td>
-                  <td>{x[1].qText}</td>
-                  <td>{x[2].qText}</td>
+                <tr key={index}>
+                  <td key={`cell-${x[0].qText.concat(index)}`}>{x[0].qText}</td>
+                  <td key={`cell-${x[1].qText.concat(index)}`}>{x[1].qText}</td>
+                  <td key={`cell-${x[2].qText.concat(index)}`}>{x[2].qText}</td>
                 </tr>
               );
             })
-          : "Loading..."}
+          ) : (
+            <tr>
+              <td>"Loading Table..."</td>
+            </tr>
+          )}
+        </tbody>
       </table>
     </>
   );
