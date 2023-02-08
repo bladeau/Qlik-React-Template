@@ -15,7 +15,6 @@ const ObjectsPage = () => {
   const chart2 = React.useRef(null);
 
   const initCharts = async () => {
-    console.log(enigma);
     const nebula = await baseConfig(enigma);
     //Retrieve Enigma Context and Nebula/Embed... https://qlik.dev/apis/javascript/nebulajs-stardust/#%23%2Fdefinitions%2FEmbed
     if (nebula) {
@@ -35,19 +34,14 @@ const ObjectsPage = () => {
   };
 
   useEffect(() => {
-    console.log("use Effect runs");
-
     if ((selectionElement, chart1 && chart2)) initCharts();
   }, [selectionElement, chart1, chart2]);
 
   return (
     <>
-      ChildTop
       <div ref={selectionElement} style={styles.filter} />
       <div ref={chart1} style={styles.chart} />
-      Some Text
       <div ref={chart2} style={styles.chart} />
-      ChildBottom
     </>
   );
 };

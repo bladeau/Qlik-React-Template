@@ -26,7 +26,6 @@ export const QDocProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Provider Use Effect");
     init();
   }, []);
 

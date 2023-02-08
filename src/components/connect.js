@@ -25,7 +25,6 @@ async function getEnigmaApp({ host, appId, headers }) {
   const params = Object.keys(headers)
     .map((key) => `${key}=${headers[key]}`)
     .join("&");
-
   const enigmaGlobal = await enigma
     .create({
       schema,
@@ -42,7 +41,6 @@ async function getEnigmaApp({ host, appId, headers }) {
 
 async function connect({ url, webIntegrationId, appId }) {
   const host = url.replace(/^https?:\/\//, "").replace(/\/?/, "");
-
   const headers = await getQCSHeaders({ webIntegrationId, url });
   return getEnigmaApp({ host, headers, appId });
 }

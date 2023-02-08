@@ -5,10 +5,12 @@ import TablePage from "./components/TablePage";
 const App = () => (
   <>
     <QDocProvider>
-      <h1>Objects</h1>
+      <h1>Chart</h1>
       <ObjectsPage />
-      <h1>Tables</h1>
+      <h1>Getting data from a Qlik Sense Table to create a custom table in the mashup</h1>
       <TablePage />
+      <h1>A drop down to toggle a variable in Qlik</h1>
+      <h1>Router</h1>
     </QDocProvider>
   </>
 );
