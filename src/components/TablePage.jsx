@@ -3,7 +3,7 @@ import { QDocContext } from "./QDocProvider";
 
 const TablePage = () => {
   const enigma = useContext(QDocContext);
-  const [table, settable] = useState("Loading...");
+  const [tableData, settableData] = useState(null);
   //Setup DOM References
 
   const initEnigmaAppObject = async () => {
@@ -30,9 +30,7 @@ const TablePage = () => {
       data.push(...row[0].qMatrix);
     }
 
-    const _table = data.map((x) => `<tr><td>${x[0].qText}</td><td>${x[1].qText}</td><td>${x[2].qText}</td></tr>`);
-
-    settable(_table);
+    settableData(data);
 
     // enigma.getObject("WTZDvr").then((api) => {
     //   // api is now an object with QIX interface methods for the GenericObject struct
@@ -59,7 +57,19 @@ const TablePage = () => {
 
   return (
     <>
-      <div> {table}</div>
+      <table>
+        {tableData
+          ? tableData.map((x) => {
+              return (
+                <tr>
+                  <td>{x[0].qText}</td>
+                  <td>{x[1].qText}</td>
+                  <td>{x[2].qText}</td>
+                </tr>
+              );
+            })
+          : "Loading..."}
+      </table>
     </>
   );
 };
