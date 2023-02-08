@@ -91,9 +91,9 @@ const TablePage = () => {
             tableData.map((x, index) => {
               return (
                 <tr key={index}>
-                  <td key={`cell-${x[0].qText.concat(index)}`}>{x[0].qText}</td>
-                  <td key={`cell-${x[1].qText.concat(index)}`}>{x[1].qText}</td>
-                  <td key={`cell-${x[2].qText.concat(index)}`}>{x[2].qText}</td>
+                  <td key={"cell0".concat(index)}>{x[0].qText}</td>
+                  <td key={"cell1".concat(index)}>{x[1].qText}</td>
+                  <td key={"cell2".concat(index)}>{x[2].qText}</td>
                 </tr>
               );
             })
