@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { QDocContext } from "./QDocProvider";
 
 const VariablesPage = () => {
+  const [QlikVariable, setQlikVariable] = useState(null);
+
   const enigma = useContext(QDocContext);
 
   //Setup DOM References
@@ -10,8 +12,10 @@ const VariablesPage = () => {
     //https://qlik.dev/libraries-and-tools/enigmajs
 
     // Get Table and Data
-    const aVariable = await enigma.getVariableByName("vMyVariable"); // It's a table
-    console.log(aVariable);
+    const aVariable = await enigma.getVariableByName("vMyVariable"); // It's a Variable
+    const contentOfVariable = await aVariable.getRawContent();
+    console.log(contentOfVariable);
+    setQlikVariable(contentOfVariable);
   };
 
   useEffect(() => {
@@ -29,6 +33,8 @@ const VariablesPage = () => {
           <option value="option3">Option 3</option>
         </select>
       </div>
+      <br />
+      <div>The Variable Value is: {QlikVariable && QlikVariable}</div>
     </>
   );
 };
