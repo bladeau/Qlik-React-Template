@@ -3,19 +3,25 @@ import { QDocContext } from "./QDocProvider";
 
 const VariablesPage = () => {
   const [QlikVariable, setQlikVariable] = useState(null);
-
+  const [LocalVariable, setLocalVariable] = useState("default");
   const enigma = useContext(QDocContext);
 
   //Setup DOM References
-
+  const handleChange = (e) => {
+    setLocalVariable(e.target.value);
+    QlikVariable.getLayout().then((r) => console.log(r.qText));
+    //  QlikVariable.SetStringValue(e.target.value);
+  };
   const initEnigmaAppObject = async () => {
     //https://qlik.dev/libraries-and-tools/enigmajs
 
     // Get Table and Data
-    const aVariable = await enigma.getVariableByName("vMyVariable"); // It's a Variable
-    const contentOfVariable = await aVariable.getRawContent();
-    console.log(contentOfVariable);
-    setQlikVariable(contentOfVariable);
+    const _QlikVariable = await enigma.getVariableByName("vMyVariable"); // It's a GenericVariable... https://help.qlik.com/en-US/sense-developer/May2021/Subsystems/NetSDKAPIref/Content/Qlik.Engine.GenericVariable.htm
+    setQlikVariable(_QlikVariable);
+    _QlikVariable.getLayout().then((res) => {
+      setLocalVariable(res.qText);
+      console.log("Server Value on init is: " + res.qText);
+    });
   };
 
   useEffect(() => {
@@ -24,17 +30,8 @@ const VariablesPage = () => {
 
   return (
     <>
-      <div>
-        <select>
-          <option value="option1">Option 1</option>
-
-          <option value="option2">Option 2</option>
-
-          <option value="option3">Option 3</option>
-        </select>
-      </div>
-      <br />
-      <div>The Variable Value is: {QlikVariable && QlikVariable}</div>
+      <input type="text" value={LocalVariable} onChange={handleChange} />
+      <p>Local (unsynced value) is: {LocalVariable}</p>
     </>
   );
 };
