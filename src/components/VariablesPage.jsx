@@ -7,11 +7,11 @@ const VariablesPage = () => {
   const enigma = useContext(QDocContext);
 
   //Setup DOM References
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     //QlikVariable.setDualValue(e.target.value, 1);
-
-    QlikVariable.setStringValue(e.target.value);
     setLocalVariable(e.target.value);
+    const res = await QlikVariable.setStringValue(e.target.value);
+    console.log(res);
 
     //  QlikVariable.SetStringValue(e.target.value);
   };
@@ -23,7 +23,6 @@ const VariablesPage = () => {
     setQlikVariable(_QlikVariable);
     _QlikVariable.getLayout().then((res) => {
       setLocalVariable(res.qText);
-      console.log("Server Value on init is: " + res.qText);
     });
   };
 
