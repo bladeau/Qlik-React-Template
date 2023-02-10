@@ -3,22 +3,21 @@ import { QDocContext } from "./QDocProvider";
 
 const VariablesPage = () => {
   const [QlikVariable, setQlikVariable] = useState(null);
-  const [LocalVariable, setLocalVariable] = useState("default");
+  const [LocalVariable, setLocalVariable] = useState("Loading...");
   const enigma = useContext(QDocContext);
 
   //Setup DOM References
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     //QlikVariable.setDualValue(e.target.value, 1);
     setLocalVariable(e.target.value);
-    const res = await QlikVariable.setStringValue(e.target.value);
-    console.log(res);
+    QlikVariable.setStringValue(e.target.value);
 
     //  QlikVariable.SetStringValue(e.target.value);
   };
   const initEnigmaAppObject = async () => {
     //https://qlik.dev/libraries-and-tools/enigmajs
 
-    // Get Table and Data
+    // Get Variable
     const _QlikVariable = await enigma.getVariableByName("vMyVariable"); // It's a GenericVariable... https://help.qlik.com/en-US/sense-developer/May2021/Subsystems/NetSDKAPIref/Content/Qlik.Engine.GenericVariable.htm
     setQlikVariable(_QlikVariable);
     _QlikVariable.getLayout().then((res) => {
@@ -33,7 +32,6 @@ const VariablesPage = () => {
   return (
     <>
       <input type="text" value={LocalVariable} onChange={handleChange} />
-      <p>Local (unsynced value) is: {LocalVariable}</p>
     </>
   );
 };
