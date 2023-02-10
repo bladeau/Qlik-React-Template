@@ -10,7 +10,10 @@ const VariablesPage = () => {
   const handleChange = (e) => {
     setLocalVariable(e.target.value);
     QlikVariable.getLayout().then((res) => console.log(res));
-    QlikVariable.setDualValue(e.target.value, 1);
+    //QlikVariable.setDualValue(e.target.value, 1);
+
+    QlikVariable.setStringValue(e.target.value);
+
     //  QlikVariable.SetStringValue(e.target.value);
   };
   const initEnigmaAppObject = async () => {
