@@ -76,6 +76,7 @@ const TablePage = () => {
 
   return (
     <>
+      <h1>Getting data from a Qlik Sense Table to create a custom table in the mashup</h1>
       <table>
         <thead>
           <tr>

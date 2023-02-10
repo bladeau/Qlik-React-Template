@@ -31,7 +31,7 @@ const VariablesPage = () => {
 
   return (
     <>
-      <input type="text" value={LocalVariable} onChange={handleChange} />
+      A variable: <input type="text" value={LocalVariable} onChange={handleChange} />
     </>
   );
 };

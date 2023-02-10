@@ -1,19 +1,30 @@
 import { QDocProvider } from "./components/QDocProvider";
-import ObjectsPage from "./components/ObjectsPage";
+
 import "./App.css";
 import TablePage from "./components/TablePage";
-import VariablesPage from "./components/VariablesPage";
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Page1 from "./Page1";
+
 const App = () => (
   <>
     <QDocProvider>
-      <h1>A Textbox that updates a Qlik Variable</h1>
-      <VariablesPage />
-      <h1>Chart</h1>
-      <ObjectsPage />
-      <h1>Getting data from a Qlik Sense Table to create a custom table in the mashup</h1>
-      <TablePage />
-
-      <h1>Router</h1>
+      <BrowserRouter>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/table">Table</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Page1 />}></Route>
+          <Route path="/table" element={<TablePage />}></Route>
+        </Routes>
+      </BrowserRouter>
     </QDocProvider>
   </>
 );
