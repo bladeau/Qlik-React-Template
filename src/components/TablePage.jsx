@@ -5,7 +5,6 @@ const TablePage = () => {
   const enigma = useContext(QDocContext);
   const [tableHeaders, settableHeaders] = useState(null);
   const [tableData, settableData] = useState(null);
-  //Setup DOM References
 
   const initEnigmaAppObject = async () => {
     //https://qlik.dev/libraries-and-tools/enigmajs
