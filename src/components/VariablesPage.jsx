@@ -11,8 +11,6 @@ const VariablesPage = () => {
     //QlikVariable.setDualValue(e.target.value, 1);
     setLocalVariable(e.target.value);
     QlikVariable.setStringValue(e.target.value);
-
-    //  QlikVariable.SetStringValue(e.target.value);
   };
   const initEnigmaAppObject = async () => {
     //https://qlik.dev/libraries-and-tools/enigmajs

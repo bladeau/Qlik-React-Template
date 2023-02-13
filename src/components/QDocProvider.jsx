@@ -12,16 +12,15 @@ const enigmaPromise = async () => {
     appId: "bb400ee5-db11-4a9c-b2b6-4f8d47a49cab",
   });
 
-  // //Enigma App is a QIX instance //Enigma App is a QIX instance
-  // const allInfos = await app.getAllInfos();
-  return enigmaApp; //Initiates a new Embed instance with base configuration and preloaded types.
+  // //Enigma App is a QIX instance
+  return enigmaApp;
 };
 export const QDocProvider = ({ children }) => {
   const [enigma, setEnigma] = useState(null);
 
   const init = async () => {
     const _enigma = await enigmaPromise();
-    // createsession object - get layout - see onenote Layout
+
     setEnigma(_enigma);
   };
 
