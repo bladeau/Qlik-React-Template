@@ -13,8 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 //This template uses the more modern functional component - https://reactjs.org/docs/components-and-props.html
 //State Management - Context API //https://academind.com/tutorials/reactjs-context-api-with-hooks
 //There is no CSS Framework, Typescript, Proptypes  being used for sake of clarity, these can be added to React easily
-//QIX Connectivity is through EnigmaJS and Nebula
-//Authentication will require qlik-web-integration-id generated on the Qlik Server
+//QIX Connectivity is through EnigmaJS and Nebula - https://qlik.dev/
+//Authentication will require qlik-web-integration-id generated on the Qlik Server - https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm?_ga=2.262508236.1126061394.1677023203-904946953.1619484271
 
 root.render(<App />); //NebulaJS wont work in Strict Mode https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
 
